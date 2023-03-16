@@ -1,0 +1,9 @@
+filter length
+sampling frequency(Hz)
+pass band(low) (Hz)
+pass band(high) (Hz)
+transition band(low) (Hz)
+transition band(high) (Hz)
+weight function(pass)
+weight function(stop)
+delta
