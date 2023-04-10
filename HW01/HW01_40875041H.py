@@ -150,6 +150,7 @@ def store_Rf(parameter, vector_s):
 
 def plot_the_diagram(parameter, Rf_final, h, error):
   import matplotlib.pyplot as plt
+  from matplotlib.pyplot import MultipleLocator
 
   plt.subplot(1, 3, 1)
   plt.step([0, parameter[2] / parameter[1], parameter[3] / parameter[1]], [0, 1, 1], color = 'black', where='post')
@@ -158,10 +159,12 @@ def plot_the_diagram(parameter, Rf_final, h, error):
   plt.plot(Rf_final[0], Rf_final[1])
   plt.title("Frequency Response")
   plt.subplot(1, 3, 2)
-  plt.bar(np.linspace(0, int(parameter[0]), int(parameter[0])), h)
+  plt.bar(np.linspace(0, int(parameter[0]) - 1, int(parameter[0])), h)
+  plt.gca().xaxis.set_major_locator(MultipleLocator(1))
   plt.title("h[n]")
   plt.subplot(1, 3, 3)
   plt.plot(np.linspace(1, len(error), len(error)), error)
+  plt.gca().xaxis.set_major_locator(MultipleLocator(1))
   plt.title("The maximum error for each iteration")
   plt.show()
 
