@@ -54,29 +54,23 @@ def compute_ssim(img_x, img_y, RGB = False):
     ssim = (2 * mean_x * mean_y + (c1 * L) ** 2) * (2 * covar_xy + (c2 * L) ** 2) / ((mean_x ** 2 + mean_y ** 2 + (c1 * L) ** 2) * (var_x + var_y + (c2 * L) ** 2))
   return ssim
 
-def show_image(img_0, img_1, img_2, RGB = False):
+def show_image(img_0, img_1, RGB = False):
   import matplotlib.pyplot as plt
 
   if RGB == True:
-    plt.subplot(1, 3, 1)
+    plt.subplot(1, 2, 1)
     plt.imshow(img_0)
     plt.axis('off')
-    plt.subplot(1, 3, 2)
+    plt.subplot(1, 2, 2)
     plt.imshow(img_1)
-    plt.axis('off')
-    plt.subplot(1, 3, 3)
-    plt.imshow(img_2)
     plt.axis('off')
     plt.show()
   else:
-    plt.subplot(1, 3, 1)
+    plt.subplot(1, 2, 1)
     plt.imshow(img_0, cmap='gray', vmin=0, vmax=255)
     plt.axis('off')
-    plt.subplot(1, 3, 2)
+    plt.subplot(1, 2, 2)
     plt.imshow(img_1, cmap='gray', vmin=0, vmax=255)
-    plt.axis('off')
-    plt.subplot(1, 3, 3)
-    plt.imshow(img_2, cmap='gray', vmin=0, vmax=255)
     plt.axis('off')
     plt.show()
 
@@ -87,11 +81,11 @@ if __name__ == "__main__":
 
   if sys.argv[3] == '0': # grayscale
     img_0, img_1 = cv2.imread(sys.argv[1], cv2.IMREAD_GRAYSCALE), cv2.imread(sys.argv[2], cv2.IMREAD_GRAYSCALE)
-    img_2 = np.array(img_0 * 0.5 + 255.5 * 0.5).astype(np.int32)
-    print('{:.4f}, {:.4f}'.format(compute_ssim(img_0, img_1, False), compute_ssim(img_0, img_2, False)))
-    show_image(img_0, img_1, img_2, False)
+    # img_2 = np.array(img_0 * 0.5 + 255.5 * 0.5).astype(np.int32)
+    print('{:.4f}'.format(compute_ssim(img_0, img_1, False)))
+    show_image(img_0, img_1, False)
   else: # RGB
     img_0, img_1 = cv2.cvtColor(cv2.imread(sys.argv[1]), cv2.COLOR_BGR2RGB), cv2.cvtColor(cv2.imread(sys.argv[2]), cv2.COLOR_BGR2RGB)
-    img_2 = np.array(img_0 * 0.5 + 255.5 * 0.5).astype(np.int32)
-    print('{:.4f}, {:.4f}'.format(compute_ssim(img_0, img_1, True), compute_ssim(img_0, img_2, True)))
-    show_image(img_0, img_1, img_2, True)
+    # img_2 = np.array(img_0 * 0.5 + 255.5 * 0.5).astype(np.int32)
+    print('{:.4f}'.format(compute_ssim(img_0, img_1, True)))
+    show_image(img_0, img_1, True)
