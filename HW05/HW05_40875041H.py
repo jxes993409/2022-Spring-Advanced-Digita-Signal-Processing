@@ -9,16 +9,19 @@ def read_input(path):
   return N, x, y
 
 def DFT(N, x, y):
-  z = x + y * 1.j
-  Z = np.fft.fft(z)
+  z = x + y * 1.j # f3 = f1 + j*f2
+  Z = np.fft.fft(z) 
   X = np.zeros(N, dtype=np.complex64)
   Y = np.zeros(N, dtype=np.complex64)
+  # compute X and Y directly for validation
   golden_X = np.fft.fft(x)
   golden_Y = np.fft.fft(y)
   X[0] = Z[0].real
   Y[0] = Z[0].imag
   for m in range(1, N):
+    # F1 = F3[m] + F3*[N - m] / 2
     X[m] = (Z[m] + np.conj(Z[N - m])) / 2
+    # F2 = F3[m] + F3*[N - m] / 2j 
     Y[m] = (Z[m] - np.conjugate(Z[N - m])) / 2.j
 
   return X, Y, golden_X, golden_Y
