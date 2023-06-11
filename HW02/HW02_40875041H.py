@@ -42,7 +42,7 @@ if __name__ == "__main__":
   plt.vlines(0.5, 2 * np.pi * -0.5, 2 * np.pi * 0.5, color="r", linestyle="--")
   plt.gca().xaxis.set_major_locator(MultipleLocator(0.1))
   plt.subplot(1, 2, 2)
-  plt.title("Impluse response of |h[n|")
+  plt.title("Impluse response of |h[n]|")
   plt.bar(np.linspace(0, length - 1, length), np.absolute(r))
   plt.gca().xaxis.set_major_locator(MultipleLocator(1))
   plt.show()
