@@ -7,7 +7,7 @@ $ make
 ```bash =
 $ make do
 ```
-* Type `make clean` to clean the execute file and object file
+* Type `make clean` to delete the execute file and object file
 ```bash =
 $ make clean
 ```
