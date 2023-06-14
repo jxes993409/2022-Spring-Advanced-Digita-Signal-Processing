@@ -1,0 +1,5 @@
+N (Number of points)
+x1.real x1.imag
+x2.real x2.imag
+...
+xN.real xN.imag
